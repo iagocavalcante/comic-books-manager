@@ -1,0 +1,37 @@
+{
+  "name": "api-comic-books",
+  "version": "0.1.0",
+  "description": "Api for manage books and comic books",
+  "main": "index.js",
+  "scripts": {
+    "pm2-dev": "pm2 start bootstrap.js --watch",
+    "dev": "nodemon bootstrap.js",
+    "pm2": "pm2",
+    "test": "jest --detectOpenHandles"
+  },
+  "keywords": [
+    "node",
+    "node-api",
+    "api",
+    "medium"
+  ],
+  "author": "Iago Cavalcante <iagoangelimc@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.7.2",
+    "boom": "^7.3.0",
+    "dotenv": "^17.2.2",
+    "guid": "^0.0.12",
+    "hapi": "^18.1.0",
+    "mongoose": "^8.18.2",
+    "pm2": "^6.0.13"
+  },
+  "devDependencies": {
+    "eslint": "^9.19.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.9"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}

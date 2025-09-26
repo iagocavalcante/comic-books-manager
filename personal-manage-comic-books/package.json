@@ -1,0 +1,56 @@
+{
+  "name": "personal-manage-comic-books",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "axios": "^1.12.2",
+    "font-awesome": "^4.7.0",
+    "material-icons": "^1.13.14",
+    "register-service-worker": "^1.7.2",
+    "vue": "^2.7.16",
+    "vue-router": "^3.6.5",
+    "vuesax": "^3.12.2"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.21.0",
+    "@vue/cli-plugin-babel": "^5.0.8",
+    "@vue/cli-plugin-eslint": "^5.0.8",
+    "@vue/cli-plugin-pwa": "^5.0.8",
+    "@vue/cli-service": "^5.0.8",
+    "babel-plugin-transform-optional-chaining": "^7.0.0-beta.3",
+    "eslint": "^8.57.1",
+    "eslint-plugin-vue": "^9.29.1",
+    "stylus": "^0.63.0",
+    "stylus-loader": "^8.1.0",
+    "vue-template-compiler": "^2.7.16"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}

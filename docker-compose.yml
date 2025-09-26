@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: comic-books-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin123
+      MONGO_INITDB_DATABASE: comic_books
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+      - ./mongo-init:/docker-entrypoint-initdb.d
+    networks:
+      - comic-books-network
+
+  api:
+    build:
+      context: ./api-comic-books
+      dockerfile: Dockerfile
+    container_name: comic-books-api
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      MONGODB_URI: mongodb://admin:admin123@mongodb:27017/comic_books?authSource=admin
+      PORT: 3000
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./api-comic-books:/app
+      - /app/node_modules
+    depends_on:
+      - mongodb
+    networks:
+      - comic-books-network
+    command: npm run dev
+
+  frontend:
+    build:
+      context: ./personal-manage-comic-books
+      dockerfile: Dockerfile
+    container_name: comic-books-frontend
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      VUE_APP_API_URL: http://localhost:3000
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./personal-manage-comic-books:/app
+      - /app/node_modules
+    depends_on:
+      - api
+    networks:
+      - comic-books-network
+    command: npm run serve
+
+volumes:
+  mongodb_data:
+
+networks:
+  comic-books-network:
+    driver: bridge

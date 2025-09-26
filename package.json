@@ -1,0 +1,30 @@
+{
+  "name": "comic-books-manager",
+  "version": "1.0.0",
+  "description": "Comic books management system with API and frontend",
+  "private": true,
+  "scripts": {
+    "dev:api": "pnpm --filter api-comic-books dev",
+    "dev:frontend": "pnpm --filter personal-manage-comic-books serve",
+    "dev": "concurrently \"pnpm dev:api\" \"pnpm dev:frontend\"",
+    "build:api": "pnpm --filter api-comic-books build",
+    "build:frontend": "pnpm --filter personal-manage-comic-books build",
+    "build": "pnpm build:api && pnpm build:frontend",
+    "test": "pnpm --filter api-comic-books test",
+    "lint": "pnpm --filter api-comic-books lint && pnpm --filter personal-manage-comic-books lint",
+    "install:all": "pnpm install"
+  },
+  "workspaces": [
+    "api-comic-books",
+    "personal-manage-comic-books"
+  ],
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "author": "Iago Cavalcante <iagoangelimc@gmail.com>",
+  "license": "ISC"
+}
