@@ -15,8 +15,8 @@ comic-books-manager/
 
 ## Prerequisites
 
-- Node.js 16+
-- PNPM 8+
+- Node.js 22+ LTS
+- PNPM 9+
 - Docker & Docker Compose (optional)
 
 ## Getting Started
@@ -70,13 +70,14 @@ docker-compose down
 ## Technology Stack
 
 ### API (api-comic-books)
-- Node.js
-- Hapi.js
-- MongoDB/Mongoose
-- Jest (testing)
+- Node.js 22 LTS
+- Hapi.js 21 (Latest stable)
+- MongoDB/Mongoose 8
+- Jest 29 (testing)
 
 ### Frontend (personal-manage-comic-books)
-- Vue.js 2.7
-- Vue Router
-- Vuesax UI
-- Axios (HTTP client)
+- Vue.js 3.5 (Latest stable)
+- Vue Router 4
+- PrimeVue 4 (Modern UI library)
+- Vite 6 (Build tool)
+- Axios 1.7 (HTTP client)

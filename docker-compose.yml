@@ -56,7 +56,7 @@ services:
       - api
     networks:
       - comic-books-network
-    command: npm run serve
+    command: npm run dev
 
 volumes:
   mongodb_data:
