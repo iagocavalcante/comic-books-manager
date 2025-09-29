@@ -1,6 +1,9 @@
 module.exports = {
   presets: [
-    '@vue/app'
+    ['@vue/app', {
+      useBuiltIns: false,
+      polyfills: []
+    }]
   ],
   plugins: [
     '@babel/plugin-proposal-optional-chaining'

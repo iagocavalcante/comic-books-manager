@@ -1,72 +1,55 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogActions from '@material-ui/core/DialogActions';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
-import withRoot from '../withRoot';
+const mongoose = require('mongoose')
+const ComicBook = mongoose.model('ComicBook')
 
-const styles = theme => ({
-  root: {
-    textAlign: 'center',
-    paddingTop: theme.spacing.unit * 20,
-  },
-});
-
-class Index extends React.Component {
-  state = {
-    open: false,
-  };
-
-  handleClose = () => {
-    this.setState({
-      open: false,
-    });
-  };
-
-  handleClick = () => {
-    this.setState({
-      open: true,
-    });
-  };
-
-  render() {
-    const { classes } = this.props;
-    const { open } = this.state;
-
-    return (
-      <div className={classes.root}>
-        <Dialog open={open} onClose={this.handleClose}>
-          <DialogTitle>Super Secret Password</DialogTitle>
-          <DialogContent>
-            <DialogContentText>1-2-3-4-5</DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button color="primary" onClick={this.handleClose}>
-              OK
-            </Button>
-          </DialogActions>
-        </Dialog>
-        <Typography variant="h4" gutterBottom>
-          Material-UI
-        </Typography>
-        <Typography variant="subtitle1" gutterBottom>
-          example project
-        </Typography>
-        <Button variant="contained" color="secondary" onClick={this.handleClick}>
-          Super Secret Password
-        </Button>
-      </div>
-    );
-  }
+const get = async () => {
+  return await ComicBook.find({
+    active: true
+  }).populate('publisher_id')
 }
 
-Index.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
+const getBySlug = async (slug) => {
+  return await ComicBook.findOne({
+    slug: slug,
+    active: true
+  }).populate('publisher_id')
+}
 
-export default withRoot(withStyles(styles)(Index));
+const getById = async (id) => {
+  return await ComicBook.findById(id).populate('publisher_id')
+}
+
+const getBySaga = async (saga) => {
+  return await ComicBook.find({
+    saga: saga,
+    active: true
+  }).populate('publisher_id')
+}
+
+const create = async (data) => {
+  const comicBook = new ComicBook(data)
+  return await comicBook.save()
+}
+
+const update = async (id, data) => {
+  return await ComicBook.findByIdAndUpdate(id, {
+    $set: data
+  })
+}
+
+const remove = async (id) => {
+  return await ComicBook.findByIdAndUpdate(id, {
+    $set: {
+      active: false
+    }
+  })
+}
+
+module.exports = {
+  get,
+  getBySlug,
+  getById,
+  getBySaga,
+  create,
+  update,
+  delete: remove
+}

@@ -44,6 +44,11 @@ const comicBook = new Schema({
     type: String,
     trim: true,
     required: [true, 'A data de publicação é obrigatória']
+  },
+  active: {
+    type: Boolean,
+    required: true,
+    default: true
   }
 })
 

@@ -1,10 +1,17 @@
-const Hapi = require('hapi')
+const Hapi = require('@hapi/hapi')
 const mongoose = require('mongoose')
 mongoose.Promise = require('bluebird')
 
 const connectToDataBase = () => {
-  mongoose.connect(process.env.MONGO_HOST, {
-    useMongoClient: true
+  console.log('Connecting to database:', process.env.MONGO_HOST)
+  mongoose.connect(process.env.MONGO_HOST)
+  
+  mongoose.connection.on('connected', () => {
+    console.log('Database connected successfully')
+  })
+  
+  mongoose.connection.on('error', (err) => {
+    console.log('Database connection error:', err)
   })
 }
 

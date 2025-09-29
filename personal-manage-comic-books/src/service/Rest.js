@@ -36,16 +36,17 @@ export default class Rest extends Service {
   }
 
   /**
+   * @param {string} id
    * @param {Object} record
    */
-  update(record) {
-    return promise({ status: record })
+  update(id, record) {
+    return promise.put(`${this.resource}/${id}`, record)
   }
 
   /**
-   * @param {Object} record
+   * @param {string} id
    */
-  destroy(record) {
-    return promise({ status: record })
+  destroy(id) {
+    return promise.delete(`${this.resource}/${id}`)
   }
 }

@@ -13,7 +13,7 @@
 
       </div>
 
-      <vs-sidebar-item :to="item.route" :index="item.index" :icon="item.icon" :key="item.index" v-for="item in items">
+      <vs-sidebar-item @click="goToRoute(item.route)" :index="item.index" :icon="item.icon" :key="item.index" v-for="item in items">
         {{item.title}}
       </vs-sidebar-item>
 
@@ -62,7 +62,7 @@ export default {
   },
   methods: {
     goToRoute (route) {
-      this.$router.replace(route)
+      this.$router.push(route)
     }
   }
 }
